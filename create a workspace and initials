@@ -27,3 +27,15 @@ experiment = Experiment(workspace=ws, name='mslearn-diabetes')
 run = experiment.submit(config=script_config)
 RunDetails(run).show()
 run.wait_for_completion()
+
+
+
+
+
+# Get logged metrics
+metrics = run.get_metrics()
+for key in metrics.keys():
+        print(key, metrics.get(key))
+print('\n')
+for file in run.get_file_names():
+    print(file)
