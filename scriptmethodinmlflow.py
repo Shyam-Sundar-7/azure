@@ -37,7 +37,8 @@ with mlflow.start_run():
 
 
 #############################################################################################
-
+# When you use MLflow tracking in an Azure ML experiment script, the MLflow tracking URI is set automatically when you start the experiment run. 
+# However, the environment in which the script is to be run must include the required mlflow packages.
 from azureml.core import Experiment, ScriptRunConfig, Environment
 from azureml.core.runconfig import DockerConfiguration
 from azureml.widgets import RunDetails
