@@ -47,3 +47,7 @@ env_names = Environment.list(workspace=ws)
 for env_name in env_names:
     print('Name:',env_name)
 
+
+
+
+https://www.coursera.org/learn/build-and-operate-machine-learning-solutions-with-azure/supplement/tU4tD/additional-reading
