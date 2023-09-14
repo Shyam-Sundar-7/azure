@@ -283,3 +283,9 @@ for model in Model.list(ws):
 
 
 
+# https://www.coursera.org/learn/build-and-operate-machine-learning-solutions-with-azure/supplement/tvrDa/additional-reading
+
+
+
+
+
