@@ -6,3 +6,24 @@ from azureml.core import Workspace
 # Load the workspace from the saved config file
 ws = Workspace.from_config()
 print('Ready to use Azure ML {} to work with {}'.format(azureml.core.VERSION, ws.name))
+
+
+
+from azureml.core import Experiment, ScriptRunConfig, Environment
+from azureml.core.runconfig import DockerConfiguration
+from azureml.widgets import RunDetails
+
+# Create a Python environment for the experiment (from a .yml file)
+env = Environment.from_conda_specification("experiment_env", "environment.yml")
+
+# Create a script config
+script_config = ScriptRunConfig(source_directory=experiment_folder,
+                                script='diabetes_experiment.py',
+                                environment=env,
+                                docker_runtime_config=DockerConfiguration(use_docker=True))
+
+# submit the experiment
+experiment = Experiment(workspace=ws, name='mslearn-diabetes')
+run = experiment.submit(config=script_config)
+RunDetails(run).show()
+run.wait_for_completion()
