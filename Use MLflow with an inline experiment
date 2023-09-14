@@ -1,0 +1,23 @@
+from azureml.core import Experiment
+import pandas as pd
+import mlflow
+
+# Set the MLflow tracking URI to the workspace
+mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
+
+# Create an Azure ML experiment in your workspace
+experiment = Experiment(workspace=ws, name='mslearn-diabetes-mlflow')
+mlflow.set_experiment(experiment.name)
+
+# start the MLflow experiment
+with mlflow.start_run():
+    
+    print("Starting experiment:", experiment.name)
+    
+    # Load data
+    data = pd.read_csv('data/diabetes.csv')
+
+    # Count the rows and log the result
+    row_count = (len(data))
+    mlflow.log_metric('observations', row_count)
+    print("Run complete")
